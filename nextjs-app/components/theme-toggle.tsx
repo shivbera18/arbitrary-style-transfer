@@ -14,43 +14,42 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  if (!mounted) {
-    return (
-      <Button variant="ghost" size="icon" className="w-9 h-9">
-        <Sun className="h-5 w-5" />
-      </Button>
-    );
-  }
-
   return (
     <Button
-      variant="ghost"
+      variant="outline"
       size="icon"
-      onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-      className="w-9 h-9 relative overflow-hidden"
+      onClick={() => mounted && setTheme(theme === 'light' ? 'dark' : 'light')}
+      className="w-9 h-9 relative overflow-hidden border-2 hover:bg-primary/10 transition-colors"
+      aria-label="Toggle theme"
     >
-      <motion.div
-        initial={{ rotate: 0, scale: 1 }}
-        animate={{ 
-          rotate: theme === 'dark' ? 0 : 180,
-          scale: theme === 'dark' ? 1 : 0
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="absolute"
-      >
-        <Moon className="h-5 w-5" />
-      </motion.div>
-      <motion.div
-        initial={{ rotate: 180, scale: 0 }}
-        animate={{ 
-          rotate: theme === 'light' ? 0 : 180,
-          scale: theme === 'light' ? 1 : 0
-        }}
-        transition={{ duration: 0.3, ease: 'easeInOut' }}
-        className="absolute"
-      >
+      {!mounted ? (
         <Sun className="h-5 w-5" />
-      </motion.div>
+      ) : (
+        <>
+          <motion.div
+            initial={{ rotate: 0, scale: 1 }}
+            animate={{ 
+              rotate: theme === 'dark' ? 0 : 180,
+              scale: theme === 'dark' ? 1 : 0
+            }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="absolute"
+          >
+            <Moon className="h-5 w-5" />
+          </motion.div>
+          <motion.div
+            initial={{ rotate: 180, scale: 0 }}
+            animate={{ 
+              rotate: theme === 'light' ? 0 : 180,
+              scale: theme === 'light' ? 1 : 0
+            }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="absolute"
+          >
+            <Sun className="h-5 w-5" />
+          </motion.div>
+        </>
+      )}
     </Button>
   );
 }
