@@ -31,7 +31,7 @@ This application allows you to stylize images with any artistic style directly i
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/arbitrary-image-stylization-nextjs.git
+   git clone https://github.com/shivbera18/arbitrary-style-transfer.git
    cd arbitrary-image-stylization-nextjs
    ```
 
